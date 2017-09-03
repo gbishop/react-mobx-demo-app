@@ -1,10 +1,14 @@
 import * as React from 'react';
 import './App.css';
+import Store from './Store';
+import { observer } from 'mobx-react';
 
 const logo = require('./logo.svg');
 
-class App extends React.Component {
+@observer
+class App extends React.Component<{store: Store}, {}> {
   render() {
+    const store = this.props.store;
     return (
       <div className="App">
         <div className="App-header">
@@ -12,8 +16,9 @@ class App extends React.Component {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
+          The count is {store.count}
         </p>
+        <button onClick={store.increment}>+</button>
       </div>
     );
   }
