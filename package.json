@@ -18,5 +18,14 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
-  }
+  },
+  "proxy": {
+    "/api": {
+      "target": "https://wwwx.cs.unc.edu/~gb/react-mobx-demo-app/",
+      "secure": true,
+      "changeOrigin": true,
+      "host": "wwwx.cs.unc.edu"
+    }
+  },
+  "homepage": "https://wwwx.cs.unc.edu/~gb/react-mobx-demo-app"
 }

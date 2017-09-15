@@ -5,6 +5,27 @@ import { observer } from 'mobx-react';
 
 const logo = require('./logo.svg');
 
+interface Count {
+  value: number;
+}
+
+function fetchCount(): Promise<Count> {
+  return new Promise((resolve, reject) => {
+    fetch(process.env.PUBLIC_URL + '/api/t1.cgi/count')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(resolve).catch(reject);
+      } else {
+        reject(res);
+      }
+    });
+  });
+}
+
+function doFetch(store: Store) {
+  fetchCount().then(res => store.count = res.value);
+}
+
 @observer
 class App extends React.Component<{store: Store}, {}> {
   render() {
@@ -16,9 +37,11 @@ class App extends React.Component<{store: Store}, {}> {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          The count is {store.count}
+          The count is {store.count}!
         </p>
         <button onClick={store.increment}>+</button>
+        <p>Click the button below to fetch the count from the api.</p>
+        <button onClick={e => doFetch(store)}>Fetch</button>
       </div>
     );
   }
