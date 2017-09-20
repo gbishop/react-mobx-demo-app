@@ -2,6 +2,11 @@ import * as React from 'react';
 import './App.css';
 import Store from './Store';
 import { observer } from 'mobx-react';
+import { Howl } from 'howler';
+
+const sound = new Howl({
+  src: ['cow.mp3']
+});
 
 const logo = require('./logo.svg');
 
@@ -42,6 +47,7 @@ class App extends React.Component<{store: Store}, {}> {
         <button onClick={store.increment}>+</button>
         <p>Click the button below to fetch the count from the api.</p>
         <button onClick={e => doFetch(store)}>Fetch</button>
+        <button onClick={e => {sound.play(); }}>Play</button>
       </div>
     );
   }
