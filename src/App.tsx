@@ -19,6 +19,12 @@ class App extends React.Component<{store: Store}, {}> {
           The count is {store.count}
         </p>
         <button onClick={store.increment}>+</button>
+        <p>The things</p>
+        <ol>
+          {store.things
+            .filter(thing => thing.value > store.count)
+            .map(thing => <li key={thing.name}>{thing.name}</li>)}
+        </ol>
       </div>
     );
   }
