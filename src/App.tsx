@@ -42,6 +42,8 @@ class App extends React.Component<{store: Store}, {}> {
         <button onClick={store.increment}>+</button>
         <p>Click the button below to fetch the count from the api.</p>
         <button onClick={e => doFetch(store)}>Fetch</button>
+        <p>Some simple thing to animate</p>
+        <img src="favicon.ico" style={{position: 'absolute', left: store.count * 20, bottom: 0}} />
       </div>
     );
   }
